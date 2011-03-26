@@ -67,7 +67,7 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
         c_index = strcspn( aptr, c_cases );
         
         /* Set base score for any matching char. */
-        if( c_index == strlen(aptr) )
+        if( c_index == a_len - (aptr - a) )
         {
             if( fuzziness > 0.0 )
             {
