@@ -38,7 +38,7 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
     /* If the original string is equal to the abbreviation, perfect match. */
     if( strcmp( a, b ) == 0 ) return 1.0;
     /* If the comparison string is empty, perfectly bad match. */
-    if( strlen(b) == 0 ) return 0.0;
+    if( b[0] == '\0' ) return 0.0;
     
     size_t a_len = strlen(a);
     size_t b_len = strlen(b);
