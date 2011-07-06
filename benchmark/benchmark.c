@@ -1,4 +1,3 @@
-
 #include "benchmark.h"
 #include <stdio.h>
 
@@ -16,7 +15,7 @@ void batch_search( list* dictionary, const char* word )
         end = get_time();
         total_time += (end - start);
     }
-    
+
     double mean_time = total_time / ITERATIONS;
     printf( "%1.3f ms\n", mean_time * 1000 );
 }
@@ -25,13 +24,13 @@ int main( int argc, char** argv )
 {
     list* dictionary = make_dictionary("american-words.txt");
     if( !dictionary ) return 0;
-    
+
     printf( "Loaded %i words into dictionary.\n\n", dictionary_size(dictionary) );
-    
+
     batch_search( dictionary, "cat" );
     batch_search( dictionary, "cious" );
     batch_search( dictionary, "pre" );
     batch_search( dictionary, "world" );
-    
+
     return 0;
 }

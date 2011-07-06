@@ -1,4 +1,3 @@
-
 #include "benchmark.h"
 #include "string_score.h"
 
@@ -22,7 +21,7 @@ void add_word( list* head, const char* word )
     list* p = head;
     while( p->next != NULL )
         p = p->next;
-    
+
     list* new = new_entry(word);
     p->next = new;
 }
@@ -39,7 +38,7 @@ list* make_dictionary( const char* filename )
 {
     char line[MAXLEN];
     list* head = new_entry("");
-    
+
     FILE* fp;
     if( !(fp = fopen( filename, "r" ) ) )
     {
@@ -52,7 +51,7 @@ list* make_dictionary( const char* filename )
         add_word( head, line );
     }
     fclose(fp);
-    
+
     return head;
 }
 

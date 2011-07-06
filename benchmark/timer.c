@@ -1,4 +1,3 @@
-
 #include "benchmark.h"
 
 #if defined(WIN32)

@@ -50,7 +50,7 @@ MaxOSX 10.6.7
 
     $ ./benchmark
     Loaded 11925 words into dictionary.
-    
+
     Scoring word "cat"      ... 1.042 ms
     Scoring word "cious"    ... 1.101 ms
     Scoring word "pre"      ... 1.003 ms

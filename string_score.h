@@ -4,7 +4,7 @@
 /*
    Generate a score between 0.0 and 1.0 representing the similarity between
    string `a` and string `b`.
-   
+
    Limitations:
    * Both `a` and `b` must be null terminated strings.
    * To maintain my sanity only ASCII characters are currently supported.

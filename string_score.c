@@ -1,4 +1,3 @@
-
 /*!
  * string_score.c: String Scoring Algorithm 0.1
  * https://github.com/kurige/string_score
@@ -39,22 +38,22 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
     if( strcmp( a, b ) == 0 ) return 1.0;
     /* If the comparison string is empty, perfectly bad match. */
     if( b[0] == '\0' ) return 0.0;
-    
+
     size_t a_len = strlen(a);
     size_t b_len = strlen(b);
-    
+
     /* Create a copy of original string, so that we can manipulate it. */
     const char* aptr = a;
-    
+
     double score = 0.0;
     int start_of_string_bonus = 0;
-    
+
     int c;
     size_t c_index;
     char c_cases[] = "  ";
-    
+
     double fuzzies = 1.0;
-    
+
     /* Walk through abbreviation and add up scores. */
     size_t i;
     for( i = 0; i < b_len; ++i )
@@ -65,7 +64,7 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
         c_cases[0] = (char)toupper(c);
         c_cases[1] = (char)tolower(c);
         c_index = strcspn( aptr, c_cases );
-        
+
         /* Set base score for any matching char. */
         if( c_index == a_len - (aptr - a) )
         {
@@ -78,14 +77,14 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
         }
         else
             score += MATCH_BONUS;
-        
+
         /* Same-case bonus. */
         if( aptr[c_index] == c )
         {
             //printf( "* Same case bonus.\n" );
             score += SAMECASE_BONUS;
         }
-        
+
         /* Consecutive letter & start-of-string bonus. */
         if( c_index == 0 )
         {
@@ -106,23 +105,23 @@ double string_score_impl( const char* a, const char* b, double fuzziness )
             //printf( "* Acronym bonus.\n" );
             score += ACRONYM_BONUS;
         }
-        
+
         /* Left trim the already matched part of the string.
            (Forces sequential matching.) */
         aptr += c_index + 1;
     }
-    
+
     score /= (double)b_len;
-    
+
     /* Reduce penalty for longer strings. */
     score = ((score * (b_len / (double)a_len)) + score) / 2;
     score /= fuzzies;
-    
+
     if( start_of_string_bonus && (score + START_OF_STR_BONUS < 1) )
     {
         //printf( "* Start of string bonus.\n" );
         score += START_OF_STR_BONUS;
     }
-    
+
     return score;
 }
